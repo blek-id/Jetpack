@@ -1,0 +1,4 @@
+name: Jetpack
+version: 2.0
+main: me.blek.jetpack.Jetpack
+api-version: 1.13

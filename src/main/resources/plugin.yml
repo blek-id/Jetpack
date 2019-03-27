@@ -1,0 +1,4 @@
+name: Jetpack
+version: ${project.version}
+main: me.blek.jetpack.Jetpack
+api-version: 1.13
