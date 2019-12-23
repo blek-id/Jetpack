@@ -33,9 +33,14 @@ public class GiveCommand extends SimpleSubCommand {
 		final ItemStack jetpackItem = JetpackItem.getInstance().getItem();
 		final ItemStack fuelItem = FuelItem.getInstance().getItem();
 
-		if(args.length > 1 && args[1] != null && NumberUtils.isNumber(args[1])) {
-			amount = Integer.parseInt(args[1]);
-			findNumber(1, 1, 2304, MessagesSettings.AMOUNT_ERROR);
+		if(args.length > 1 && args[1] != null) {
+			if(NumberUtils.isNumber(args[1])) {
+				amount = Integer.parseInt(args[1]);
+				findNumber(1, 1, 2304, MessagesSettings.AMOUNT_ERROR);
+			} else {
+				checkConsole();
+				player = findPlayer(args[1]);
+			}
 		}
 
 		if(args.length > 2 && args[2] != null) {
@@ -48,8 +53,12 @@ public class GiveCommand extends SimpleSubCommand {
 					returnTell(MessagesSettings.NO_PERMISSION);
 				}
 
+				if(player == null) {
+					returnInvalidArgs();
+				}
+
 				if(player != getPlayer()) {
-					tell(MessagesSettings.GIVE_SENDER.replace("{amount}", Integer.toString(amount)).replace("{item}", ItemUtil.bountifyCapitalized(itemType)));
+					tell(MessagesSettings.GIVE_SENDER.replace("{amount}", Integer.toString(amount)).replace("{item}", ItemUtil.bountifyCapitalized(itemType)).replace("{player}", player.getDisplayName()));
 				}
 				Common.tell(player, MessagesSettings.GIVE_RECEIVER.replace("{amount}", Integer.toString(amount)).replace("{item}", ItemUtil.bountifyCapitalized(itemType)));
 
@@ -62,8 +71,12 @@ public class GiveCommand extends SimpleSubCommand {
 					returnTell(MessagesSettings.NO_PERMISSION);
 				}
 
-				if(player != getPlayer()) {
-					tell(MessagesSettings.GIVE_SENDER.replace("{amount}", Integer.toString(amount)).replace("{item}", ItemUtil.bountifyCapitalized(itemType)));
+				if(player == null) {
+					returnInvalidArgs();
+				}
+
+				if(player != getPlayer() ) {
+					tell(MessagesSettings.GIVE_SENDER.replace("{amount}", Integer.toString(amount)).replace("{item}", ItemUtil.bountifyCapitalized(itemType)).replace("{player}", player.getDisplayName()));
 				}
 				Common.tell(player, MessagesSettings.GIVE_RECEIVER.replace("{amount}", Integer.toString(amount)).replace("{item}", ItemUtil.bountifyCapitalized(itemType)));
 
@@ -78,9 +91,8 @@ public class GiveCommand extends SimpleSubCommand {
 
 	@Override
 	public List<String> tabComplete() {
-		switch(args.length) {
-			case 1:
-				return completeLastWord("jetpack", "fuel");
+		if(args.length == 1) {
+			return completeLastWord("jetpack", "fuel");
 		}
 		return completeLastWordPlayerNames();
 	}

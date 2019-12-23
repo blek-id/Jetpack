@@ -23,6 +23,8 @@ public class SetCommand extends SimpleSubCommand {
 
 	@Override
 	protected void onCommand() {
+		checkConsole();
+
 		final String itemType = args[0];
 		final ItemStack mainhandItem = getPlayer().getInventory().getItemInMainHand();
 		final ItemSettings itemSettings = new ItemSettings();
@@ -59,24 +61,19 @@ public class SetCommand extends SimpleSubCommand {
 
 	@Override
 	public List<String> tabComplete() {
-		switch(args.length) {
-			case 1:
-				return completeLastWord("jetpack", "fuel");
+		if(args.length == 1) {
+			return completeLastWord("jetpack", "fuel");
 		}
 		return null;
 	}
 
-	private final boolean isArmor(final ItemStack itemStack) {
+	private boolean isArmor(final ItemStack itemStack) {
 		if (itemStack == null)
 			return false;
 		final String typeNameString = itemStack.getType().name();
-		if (typeNameString.endsWith("_HELMET")
+		return typeNameString.endsWith("_HELMET")
 				|| typeNameString.endsWith("_CHESTPLATE")
 				|| typeNameString.endsWith("_LEGGINGS")
-				|| typeNameString.endsWith("_BOOTS")) {
-			return true;
-		}
-
-		return false;
+				|| typeNameString.endsWith("_BOOTS");
 	}
 }
