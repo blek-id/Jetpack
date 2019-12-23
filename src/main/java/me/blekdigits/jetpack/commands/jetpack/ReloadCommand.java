@@ -11,6 +11,7 @@ public class ReloadCommand extends SimpleSubCommand {
 	public ReloadCommand(final SimpleCommandGroup parent) {
 		super(parent,"reload|rl");
 
+		setPermission("jetpack.reload");
 		setDescription("Reload the configuration.");
 	}
 
