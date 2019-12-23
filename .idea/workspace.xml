@@ -1,92 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ArtifactsWorkspaceSettings">
-    <artifacts-to-build>
-      <artifact name="Jetpack:jar" />
-    </artifacts-to-build>
-  </component>
   <component name="ChangeListManager">
-    <list default="true" id="f22f3ebe-eeb1-4e91-89e2-5628df4e1dc9" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/blek/commands/GetCommands.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/blek/commands/GetCommands.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/me/blek/events/JetpackListener.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/me/blek/events/JetpackListener.java" afterDir="false" />
-    </list>
-    <ignored path="$PROJECT_DIR$/out/" />
-    <ignored path="$PROJECT_DIR$/target/" />
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <list default="true" id="737cda39-e9bd-492c-85ae-9900abe306f1" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
-  <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/main/java/me/blek/jetpack/Jetpack.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="57" column="5" lean-forward="true" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1662#1663#0" expanded="true" />
-                <element signature="e#1735#1736#0" expanded="true" />
-                <element signature="e#1780#1781#0" expanded="true" />
-                <element signature="e#1808#1809#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/me/blek/events/JetpackListener.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="152" column="37" selection-start-line="152" selection-start-column="37" selection-end-line="152" selection-end-column="37" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/me/blek/commands/GetCommands.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="9" selection-start-line="9" selection-end-line="9" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/me/blek/commands/SetCommands.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/main/java/me/blek/commands/JetpackBaseCommands.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="50">
-              <caret line="56" selection-start-line="56" selection-end-line="56" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#onGiveJetpack#0;class#JetpackBaseCommands#0" />
-                <element signature="method#onGetFuel#0;class#JetpackBaseCommands#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+  <component name="CodeInsightWorkspaceSettings">
+    <option name="optimizeImportsOnTheFly" value="true" />
+  </component>
+  <component name="CompilerWorkspaceConfiguration">
+    <option name="MAKE_PROJECT_ON_SAVE" value="true" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -95,194 +20,42 @@
       </list>
     </option>
   </component>
-  <component name="FindInProjectRecents">
-    <findStrings>
-      <find>register</find>
-      <find>spawnparticle</find>
-    </findStrings>
-  </component>
-  <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
-  </component>
-  <component name="IdeDocumentHistory">
-    <option name="CHANGED_PATHS">
-      <list>
-        <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/me/blek/commands/getJetpack.java" />
-        <option value="$PROJECT_DIR$/src/main/java/me/blek/commands/GetJetpack.java" />
-        <option value="$PROJECT_DIR$/src/main/java/me/blek/commands/JetpackBase.java" />
-        <option value="$PROJECT_DIR$/src/main/java/me/blek/utils/ItemStackFactory.java" />
-        <option value="$PROJECT_DIR$/src/main/resources/config.yml" />
-        <option value="$PROJECT_DIR$/src/main/java/me/blek/items/FuelItem.java" />
-        <option value="$PROJECT_DIR$/src/main/java/me/blek/items/JetpackItem.java" />
-        <option value="$PROJECT_DIR$/src/main/java/me/blek/utils/Common.java" />
-        <option value="$PROJECT_DIR$/src/main/java/me/blek/commands/SetCommands.java" />
-        <option value="$PROJECT_DIR$/src/main/java/me/blek/commands/JetpackBaseCommands.java" />
-        <option value="$PROJECT_DIR$/src/main/java/me/blek/events/JetpackListener.java" />
-        <option value="$PROJECT_DIR$/src/main/java/me/blek/commands/GetCommands.java" />
-        <option value="$PROJECT_DIR$/src/main/java/me/blek/jetpack/Jetpack.java" />
-      </list>
-    </option>
-  </component>
   <component name="MavenImportPreferences">
     <option name="importingSettings">
       <MavenImportingSettings>
         <option name="downloadDocsAutomatically" value="true" />
         <option name="downloadSourcesAutomatically" value="true" />
+        <option name="importAutomatically" value="true" />
+        <option name="vmOptionsForImporter" value="-Xmx768m" />
       </MavenImportingSettings>
     </option>
   </component>
-  <component name="MavenProjectNavigator">
-    <treeState>
-      <expand>
-        <path>
-          <item name="" type="16c1761:MavenProjectsStructure$RootNode" />
-          <item name="Jetpack" type="9519ce18:MavenProjectsStructure$ProjectNode" />
-        </path>
-      </expand>
-      <select />
-    </treeState>
-  </component>
-  <component name="ProjectFrameBounds">
-    <option name="x" value="1983" />
-    <option name="y" value="31" />
-    <option name="width" value="1400" />
-    <option name="height" value="1000" />
-  </component>
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
-  <component name="ProjectView">
-    <navigator proportions="" version="1">
-      <foldersAlwaysOnTop value="true" />
-    </navigator>
-    <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Jetpack" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Jetpack" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Jetpack" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Jetpack" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Jetpack" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Jetpack" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Jetpack" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Jetpack" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Jetpack" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Jetpack" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="blek" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Jetpack" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Jetpack" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="blek" type="462c0819:PsiDirectoryNode" />
-              <item name="commands" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Jetpack" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Jetpack" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="blek" type="462c0819:PsiDirectoryNode" />
-              <item name="events" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Jetpack" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Jetpack" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="blek" type="462c0819:PsiDirectoryNode" />
-              <item name="items" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Jetpack" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Jetpack" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="blek" type="462c0819:PsiDirectoryNode" />
-              <item name="jetpack" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Jetpack" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Jetpack" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="java" type="462c0819:PsiDirectoryNode" />
-              <item name="blek" type="462c0819:PsiDirectoryNode" />
-              <item name="utils" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Jetpack" type="b2602c69:ProjectViewProjectNode" />
-              <item name="Jetpack" type="462c0819:PsiDirectoryNode" />
-              <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="main" type="462c0819:PsiDirectoryNode" />
-              <item name="resources" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
-      <pane id="PackagesPane" />
-      <pane id="Scope" />
-    </panes>
+  <component name="ProjectId" id="1VL8fHL1SWMgYGLpNcf7VqDvSFc" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1553694071007" />
-    <property name="extract.method.default.visibility" value="private" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
-    <property name="project.structure.last.edited" value="Artifacts" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="project.structure.side.proportion" value="0.2" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../Java Projects/Orion" />
+    <property name="settings.editor.selected.configurable" value="Errors" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="me.blek.items" />
+      <recent name="me.blekdigits.jetpack.item" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
-  <component name="RunManager" selected="JAR Application.Plugin Debug">
-    <configuration name="Plugin Debug" type="JarApplication" factoryName="JAR Application">
-      <option name="JAR_PATH" value="$PROJECT_DIR$/../../../Minecraft Server/Server/spigot.jar" />
+  <component name="RunManager" selected="Maven.Jetpack [clean,install]">
+    <configuration name="Debugging" type="JarApplication">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/../../Minecraft Server/Server/cache/patched_1.14.4.jar" />
       <option name="WORKING_DIRECTORY" value="D:\Documents\Minecraft Server\Server" />
       <option name="ALTERNATIVE_JRE_PATH" />
-      <module name="Jetpack" />
-      <method v="2" />
+      <method v="2">
+        <option name="AntTarget" enabled="true" antfile="file://$PROJECT_DIR$/build.xml" target="Build" />
+      </method>
     </configuration>
-    <configuration name="Jetpack build" type="MavenRunConfiguration" factoryName="Maven">
+    <configuration name="Jetpack [clean,install]" type="MavenRunConfiguration" factoryName="Maven" nameIsGenerated="true">
       <MavenSettings>
         <option name="myGeneralSettings" />
         <option name="myRunnerSettings" />
@@ -294,7 +67,7 @@
             <option name="goals">
               <list>
                 <option value="clean" />
-                <option value="package" />
+                <option value="install" />
               </list>
             </option>
             <option name="pomFileName" />
@@ -309,454 +82,131 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="JAR Application.Plugin Debug" />
-      <item itemvalue="Maven.Jetpack build" />
+      <item itemvalue="JAR Application.Debugging" />
+      <item itemvalue="Maven.Jetpack [clean,install]" />
     </list>
   </component>
-  <component name="SvnConfiguration">
-    <configuration />
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="f22f3ebe-eeb1-4e91-89e2-5628df4e1dc9" name="Default Changelist" comment="" />
-      <created>1552546246675</created>
+      <changelist id="737cda39-e9bd-492c-85ae-9900abe306f1" name="Default Changelist" comment="" />
+      <created>1577021116370</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1552546246675</updated>
+      <updated>1577021116370</updated>
     </task>
-    <task id="LOCAL-00001" summary="First commit">
-      <created>1553693516649</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1553693516649</updated>
-    </task>
-    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
-  <component name="TodoView">
-    <todo-panel id="selected-file">
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
-    <todo-panel id="all">
-      <are-packages-shown value="true" />
-      <is-autoscroll-to-source value="true" />
-    </todo-panel>
+  <component name="WindowStateProjectService">
+    <state x="552" y="179" width="816" height="730" key="#Intentions" timestamp="1577115377081">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="179" width="816" height="730" key="#Intentions/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1577115377081" />
+    <state x="552" y="179" key="#Plugins" timestamp="1577070622065">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="179" key="#Plugins/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1577070622065" />
+    <state x="415" y="167" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1577070153592">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="415" y="167" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1577070153592" />
+    <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser" timestamp="1577117500386">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="765" y="230" key="#com.intellij.ide.util.MemberChooser/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1577117500386" />
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1577122592169">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="690" y="267" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1577122592169" />
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog" timestamp="1577113776226">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="92" y="92" width="1736" height="856" key="DiffContextDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1577113776226" />
+    <state x="741" y="267" key="FileChooserDialogImpl" timestamp="1577117359179">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="741" y="267" key="FileChooserDialogImpl/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1577117359179" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1577127306616">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1577127306616" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1577127306616">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1577127306616" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1577127306616">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1577127306616" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1577127306616">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1577127306616" />
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom" timestamp="1577127306612">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.bottom/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1577127306612" />
+    <state width="1877" height="348" key="GridCell.Tab.1.center" timestamp="1577127306612">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.center/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1577127306612" />
+    <state width="1877" height="348" key="GridCell.Tab.1.left" timestamp="1577127306612">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.left/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1577127306612" />
+    <state width="1877" height="348" key="GridCell.Tab.1.right" timestamp="1577127306612">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="1877" height="348" key="GridCell.Tab.1.right/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1577127306612" />
+    <state x="461" y="163" key="SettingsEditor" timestamp="1577112794823">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="461" y="163" key="SettingsEditor/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1577112794823" />
+    <state x="655" y="344" key="com.intellij.ide.util.TipDialog" timestamp="1577123854722">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="655" y="344" key="com.intellij.ide.util.TipDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1577123854722" />
+    <state x="657" y="118" width="606" height="804" key="find.popup" timestamp="1577126884561">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="657" y="118" width="606" height="804" key="find.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1577126884561" />
+    <state width="631" height="268" key="javadoc.popup.new" timestamp="1577124980439">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state width="631" height="268" key="javadoc.popup.new/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1577124980439" />
+    <state x="702" y="139" key="refactoring.ChangeSignatureDialog" timestamp="1577092254749">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="702" y="139" key="refactoring.ChangeSignatureDialog/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1577092254749" />
+    <state x="616" y="240" key="run.anything.popup" timestamp="1577119235532">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="616" y="240" key="run.anything.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1577119235532" />
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup" timestamp="1577126639351">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="623" y="225" width="672" height="678" key="search.everywhere.popup/0.0.1920.1040/1920.0.1920.1040@0.0.1920.1040" timestamp="1577126639351" />
   </component>
-  <component name="ToolWindowManager">
-    <frame x="1983" y="31" width="1400" height="1000" extended-state="0" />
-    <editor active="true" />
-    <layout>
-      <window_info id="Designer" order="0" />
-      <window_info id="UI Designer" order="1" />
-      <window_info id="Capture Tool" order="2" />
-      <window_info id="Favorites" order="3" side_tool="true" />
-      <window_info id="Image Layers" order="4" />
-      <window_info content_ui="combo" id="Project" order="5" visible="true" weight="0.26567164" />
-      <window_info id="Structure" order="6" side_tool="true" weight="0.25" />
-      <window_info anchor="bottom" id="Terminal" order="0" weight="0.32936078" />
-      <window_info anchor="bottom" id="Event Log" order="1" side_tool="true" weight="0.32936078" />
-      <window_info active="true" anchor="bottom" id="Messages" order="2" visible="true" weight="0.32871974" />
-      <window_info anchor="bottom" id="Version Control" order="3" />
-      <window_info anchor="bottom" id="Message" order="4" />
-      <window_info anchor="bottom" id="Find" order="5" />
-      <window_info anchor="bottom" id="Run" order="6" weight="0.32936078" />
-      <window_info anchor="bottom" id="Debug" order="7" weight="0.30552545" />
-      <window_info anchor="bottom" id="Cvs" order="8" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="9" weight="0.4" />
-      <window_info anchor="bottom" id="TODO" order="10" weight="0.32936078" />
-      <window_info anchor="right" id="Theme Preview" order="0" />
-      <window_info anchor="right" id="Capture Analysis" order="1" />
-      <window_info anchor="right" id="Palette&#9;" order="2" />
-      <window_info anchor="right" id="Maven" order="3" visible="true" weight="0.11119403" />
-      <window_info anchor="right" id="Palette" order="4" />
-      <window_info anchor="right" id="Commander" internal_type="SLIDING" order="5" type="SLIDING" weight="0.4" />
-      <window_info anchor="right" id="Ant Build" order="6" weight="0.25" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="7" weight="0.25" />
-    </layout>
-  </component>
-  <component name="VcsManagerConfiguration">
-    <ignored-roots>
-      <path value="$PROJECT_DIR$" />
-    </ignored-roots>
-    <MESSAGE value="First commit" />
-    <option name="LAST_COMMIT_MESSAGE" value="First commit" />
-  </component>
-  <component name="editorHistoryManager">
-    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.13.2-R0.1-SNAPSHOT/spigot-api-1.13.2-R0.1-20190313.102523-181-sources.jar!/org/bukkit/plugin/java/JavaPlugin.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-391">
-          <caret line="33" column="22" selection-start-line="33" selection-end-line="408" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.13.2-R0.1-SNAPSHOT/spigot-api-1.13.2-R0.1-20190313.102523-181-sources.jar!/org/bukkit/command/Command.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="24" column="22" selection-start-line="24" selection-start-column="22" selection-end-line="24" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pom.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="314">
-          <caret line="35" column="40" selection-start-line="35" selection-start-column="40" selection-end-line="35" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/plugin.yml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.13.2-R0.1-SNAPSHOT/spigot-api-1.13.2-R0.1-20190313.102523-181-sources.jar!/org/bukkit/inventory/Inventory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="110" column="39" selection-start-line="110" selection-start-column="39" selection-end-line="110" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/resources/config.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="123">
-          <caret line="30" lean-forward="true" selection-start-line="30" selection-end-line="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.13.2-R0.1-SNAPSHOT/spigot-api-1.13.2-R0.1-20190313.102523-181-sources.jar!/org/bukkit/Bukkit.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="411" selection-start-line="411" selection-end-line="411" />
-          <folding>
-            <element signature="e#12511#12512#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/co/aikar/acf-core/0.5.0-SNAPSHOT/acf-core-0.5.0-20190303.161237-133-sources.jar!/co/aikar/commands/CommandManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="358">
-          <caret line="342" selection-start-line="342" selection-end-line="342" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/co/aikar/acf-bukkit/0.5.0-SNAPSHOT/acf-bukkit-0.5.0-20190303.161241-139-sources.jar!/co/aikar/commands/BukkitCommandManager.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="449">
-          <caret line="388" selection-start-line="388" selection-end-line="388" />
-          <folding>
-            <element signature="e#10266#10267#0" expanded="true" />
-            <element signature="e#10313#10314#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.13.2-R0.1-SNAPSHOT/spigot-api-1.13.2-R0.1-20190313.102523-181-sources.jar!/org/bukkit/ChatColor.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="69">
-          <caret line="315" column="61" selection-start-line="315" selection-start-column="61" selection-end-line="315" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/commons-lang/commons-lang/2.6/commons-lang-2.6-sources.jar!/org/apache/commons/lang/Validate.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="193" selection-start-line="193" selection-end-line="193" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.13.2-R0.1-SNAPSHOT/spigot-api-1.13.2-R0.1-20190313.102523-181-sources.jar!/org/bukkit/configuration/MemoryConfiguration.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="63" selection-start-line="63" selection-end-line="63" />
-          <folding>
-            <element signature="e#1920#1921#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/co/aikar/acf-core/0.5.0-SNAPSHOT/acf-core-0.5.0-20190303.161237-133-sources.jar!/co/aikar/commands/BaseCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="508" selection-start-line="508" selection-end-line="508" />
-          <folding>
-            <element signature="e#31788#31789#0" expanded="true" />
-            <element signature="e#31827#31828#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/co/aikar/acf-core/0.5.0-SNAPSHOT/acf-core-0.5.0-20190303.161237-133-sources.jar!/co/aikar/commands/RootCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="99" selection-start-line="99" selection-end-line="99" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/co/aikar/acf-bukkit/0.5.0-SNAPSHOT/acf-bukkit-0.5.0-20190303.161241-139-sources.jar!/co/aikar/commands/BukkitRootCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="561">
-          <caret line="62" selection-start-line="62" selection-end-line="62" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.13.2-R0.1-SNAPSHOT/spigot-api-1.13.2-R0.1-20190313.102523-181-sources.jar!/org/bukkit/command/SimpleCommandMap.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="205">
-          <caret line="138" selection-start-line="138" selection-end-line="138" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/google/guava/guava/21.0/guava-21.0-sources.jar!/com/google/common/util/concurrent/ListenableFutureTask.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="463">
-          <caret line="87" selection-start-line="87" selection-end-line="87" />
-          <folding>
-            <element signature="e#3340#3341#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/com/google/guava/guava/21.0/guava-21.0-sources.jar!/com/google/common/util/concurrent/ExecutionList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="108" column="22" lean-forward="true" selection-start-line="108" selection-start-column="22" selection-end-line="108" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.13.2-R0.1-SNAPSHOT/spigot-api-1.13.2-R0.1-20190313.102523-181-sources.jar!/org/bukkit/configuration/MemorySection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2543">
-          <caret line="288" selection-start-line="288" selection-end-line="288" />
-          <folding>
-            <element signature="e#3969#3970#0" expanded="true" />
-            <element signature="e#3996#3997#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/co/aikar/acf-core/0.5.0-SNAPSHOT/acf-core-0.5.0-20190303.161237-133-sources.jar!/co/aikar/commands/RegisteredCommand.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="324">
-          <caret line="150" selection-start-line="150" selection-end-line="150" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_201/src.zip!/java/util/function/Supplier.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="40" column="17" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.13.2-R0.1-SNAPSHOT/spigot-api-1.13.2-R0.1-20190313.102523-181-sources.jar!/org/bukkit/event/player/PlayerToggleSneakEvent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="25" selection-start-line="25" selection-end-line="25" />
-          <folding>
-            <element signature="e#753#754#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.13.2-R0.1-SNAPSHOT/spigot-api-1.13.2-R0.1-20190313.102523-181-sources.jar!/org/bukkit/command/CommandSender.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="5" column="20" lean-forward="true" selection-start-line="5" selection-start-column="20" selection-end-line="5" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/co/aikar/acf-bukkit/0.5.0-SNAPSHOT/acf-bukkit-0.5.0-20190303.161241-139-sources.jar!/co/aikar/commands/bukkit/contexts/OnlinePlayer.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="43" column="66" lean-forward="true" selection-start-line="43" selection-start-column="66" selection-end-line="43" selection-end-column="66" />
-          <folding>
-            <element signature="e#1369#1370#0" expanded="true" />
-            <element signature="e#1405#1406#0" expanded="true" />
-            <element signature="e#1438#1439#0" expanded="true" />
-            <element signature="e#1472#1473#0" expanded="true" />
-            <element signature="e#1775#1776#0" expanded="true" />
-            <element signature="e#1818#1819#0" expanded="true" />
-            <element signature="e#1864#1865#0" expanded="true" />
-            <element signature="e#1924#1925#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$MAVEN_REPOSITORY$/org/spigotmc/spigot-api/1.13.2-R0.1-SNAPSHOT/spigot-api-1.13.2-R0.1-20190313.102523-181-sources.jar!/org/bukkit/inventory/ItemStack.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2822">
-          <caret line="190" selection-start-line="190" selection-end-line="190" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/me/blek/items/FuelItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/me/blek/utils/Common.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="11" column="5" selection-start-line="11" selection-start-column="5" selection-end-line="11" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/me/blek/utils/ItemStackFactory.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="102">
-          <caret line="6" column="14" selection-start-line="6" selection-start-column="14" selection-end-line="6" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/me/blek/items/JetpackItem.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="28" selection-start-line="28" selection-end-line="28" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/me/blek/commands/SetCommands.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/me/blek/commands/JetpackBaseCommands.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="50">
-          <caret line="56" selection-start-line="56" selection-end-line="56" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#onGiveJetpack#0;class#JetpackBaseCommands#0" />
-            <element signature="method#onGetFuel#0;class#JetpackBaseCommands#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/me/blek/events/JetpackListener.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="152" column="37" selection-start-line="152" selection-start-column="37" selection-end-line="152" selection-end-column="37" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/me/blek/commands/GetCommands.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/me/blek/jetpack/Jetpack.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="57" column="5" lean-forward="true" selection-start-line="57" selection-start-column="5" selection-end-line="57" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1662#1663#0" expanded="true" />
-            <element signature="e#1735#1736#0" expanded="true" />
-            <element signature="e#1780#1781#0" expanded="true" />
-            <element signature="e#1808#1809#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ArtifactsStructureConfigurable.UI">
-        <settings>
-          <artifact-editor />
-          <last-edited>Jetpack:jar</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-                <option value="0.5" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="FacetStructureConfigurable.UI">
-        <settings>
-          <last-edited>Minecraft</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="GlobalLibrariesConfigurable.UI">
-        <settings>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="JdkListConfigurable.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ModuleStructureConfigurable.UI">
-        <settings>
-          <last-edited>Jetpack</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-      <state key="ProjectLibrariesConfigurable.UI">
-        <settings>
-          <last-edited>Maven: co.aikar:acf-bukkit:0.5.0-SNAPSHOT</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>jar://$MAVEN_REPOSITORY$/com/github/kangarko/Foundation/5.1.4/Foundation-5.1.4-sources.jar!/org/mineacademy/fo/remain/Remain.java</url>
+          <line>1592</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

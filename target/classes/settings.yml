@@ -1,0 +1,17 @@
+#Jetpack Plugin
+
+#Plugin Prefix when sending messages
+Prefix: "&f[&8Jetpack&f]"
+Burn_Rate: 5.0
+
+#Particle ejected from the jetpack when flying (Set '' for none)
+Particle: 'CLOUD'
+#Number of particle on jetpack
+Particle_Amount: 0
+#RGB Code for redstone particle
+Particle_Redstone_Color: '255,255,0'
+
+#DO NOT CHANGE THIS (FOR DEVELOPERS ONLY)
+Log_Lag_Over_Milis: 100
+Debug: []
+Version: 4

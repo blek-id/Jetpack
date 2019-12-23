@@ -1,4 +1,5 @@
 name: Jetpack
 version: ${project.version}
-main: me.blek.jetpack.Jetpack
-api-version: 1.13
+main: ${main.class}
+author: Blekdigits
+api-version: 1.14

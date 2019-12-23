@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.mineacademy.plugin:EssentialsX:2.16.1.80">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/mineacademy/plugin/EssentialsX/2.16.1.80/EssentialsX-2.16.1.80.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/mineacademy/plugin/EssentialsX/2.16.1.80/EssentialsX-2.16.1.80-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/mineacademy/plugin/EssentialsX/2.16.1.80/EssentialsX-2.16.1.80-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

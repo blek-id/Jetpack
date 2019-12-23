@@ -1,0 +1,18 @@
+#Messages for the plugin
+messages:
+  no-permission: "&cYou don't have permission."
+  hand-air: "&cYou have nothing on your hand."
+  hand-not-armor: "&cItem must be an Armor."
+  amount-error: "&cPlayer's inventory would be full if you give more! (Max: 2034)"
+  jetpack:
+    turn-on: "&aJetpack on"
+    turn-off: "&cJetpack off"
+    need-fuel: "&cYou need fuel!"
+    out-of-fuel: "&cJetpack ran out of fuel"
+  commands:
+    give-receiver: "{amount}x &a{item} received!"
+    give-sender: "&aGiven &2{amount}x {item} to &2{player}&a."
+    set-success: "&a{item} Item set."
+  usage:
+    give: "<fuel|jetpack> [amount] [player]"
+    set: "<fuel|jetpack>"

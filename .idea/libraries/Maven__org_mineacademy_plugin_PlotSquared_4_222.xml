@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.mineacademy.plugin:PlotSquared:4.222">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/mineacademy/plugin/PlotSquared/4.222/PlotSquared-4.222.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/mineacademy/plugin/PlotSquared/4.222/PlotSquared-4.222-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/mineacademy/plugin/PlotSquared/4.222/PlotSquared-4.222-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

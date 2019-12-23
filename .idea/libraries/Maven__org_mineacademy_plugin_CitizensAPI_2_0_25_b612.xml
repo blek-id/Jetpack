@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.mineacademy.plugin:CitizensAPI:2.0.25-b612">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/mineacademy/plugin/CitizensAPI/2.0.25-b612/CitizensAPI-2.0.25-b612.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/mineacademy/plugin/CitizensAPI/2.0.25-b612/CitizensAPI-2.0.25-b612-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/mineacademy/plugin/CitizensAPI/2.0.25-b612/CitizensAPI-2.0.25-b612-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>
