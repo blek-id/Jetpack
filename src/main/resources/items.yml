@@ -6,10 +6,10 @@ items:
     meta:
       ==: ItemMeta
       meta-type: UNSPECIFIC
-      display-name: §3Jetpack
+      display-name: ยง3Jetpack
       lore:
-        - §7Sneak to toggle on/off
-        - §7Double tap space to fly
+        - ยง7Sneak to toggle on/off
+        - ยง7Double tap space to fly
   fuel:
     ==: org.bukkit.inventory.ItemStack
     v: 1976
