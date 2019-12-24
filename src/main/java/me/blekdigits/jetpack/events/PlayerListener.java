@@ -30,8 +30,6 @@ import java.util.UUID;
 
 public class PlayerListener implements Listener {
 
-	final private ItemStack jetpackItem = JetpackItem.getInstance().getItem();
-	final private ItemStack fuelItem = FuelItem.getInstance().getItem();
 	final private Map<UUID, BukkitTask> runningTasks = PlayerCache.getRunningTasks();
 
 	@EventHandler
@@ -102,27 +100,30 @@ public class PlayerListener implements Listener {
 	}
 
 	private boolean isPlayerWearingJetpack(final Player player) {
+
+		final ItemStack jetpackItem = JetpackItem.getInstance().getItem();
+
 		final List<ItemStack> playerEquipments = Arrays.asList(player.getInventory().getArmorContents());
 		final ItemStack playerJetpack = playerEquipments.stream()
 				.filter(playerEquipment -> ItemUtil.isSimilar(jetpackItem, playerEquipment))
 				.findAny()
 				.orElse(null);
 
-		if(playerJetpack != null) {
-			return true;
-		}
-		return false;
+		return playerJetpack != null;
 	}
 
 	private boolean isFuelAvailable(final Player player) {
+
+		final ItemStack fuelItem = FuelItem.getInstance().getItem();
+
 		final ItemStack playerFuel = PlayerUtil.getFirstItem(player, fuelItem);
-		if(playerFuel != null) {
-			return true;
-		}
-		return false;
+		return playerFuel != null;
 	}
 
 	private void takePlayerFuel(final Player player) {
+
+		final ItemStack fuelItem = FuelItem.getInstance().getItem();
+
 		final ItemStack playerFuel = PlayerUtil.getFirstItem(player, fuelItem);
 		PlayerUtil.takeOnePiece(player, playerFuel);
 	}

@@ -43,7 +43,7 @@ public class SetCommand extends SimpleSubCommand {
 					returnTell(MessagesSettings.HAND_NOT_ARMOR);
 				}
 
-				itemSettings.setItem(itemType, mainhandItem);
+				itemSettings.setItem(itemType, mainhandItem.clone());
 				tell(MessagesSettings.SET_SUCCESS.replace("{item}", ItemUtil.bountifyCapitalized(itemType)));
 				break;
 			case "fuel":
@@ -51,7 +51,7 @@ public class SetCommand extends SimpleSubCommand {
 					returnTell(MessagesSettings.NO_PERMISSION);
 				}
 
-				itemSettings.setItem(itemType, mainhandItem);
+				itemSettings.setItem(itemType, mainhandItem.clone());
 				tell(MessagesSettings.SET_SUCCESS.replace("{item}", ItemUtil.bountifyCapitalized(itemType)));
 				break;
 			default:
