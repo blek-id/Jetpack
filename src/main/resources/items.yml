@@ -1,16 +1,16 @@
 items:
+  fuel:
+    ==: org.bukkit.inventory.ItemStack
+    v: 1631
+    type: COAL
   jetpack:
     ==: org.bukkit.inventory.ItemStack
-    v: 1976
+    v: 1631
     type: CHAINMAIL_CHESTPLATE
     meta:
       ==: ItemMeta
       meta-type: UNSPECIFIC
-      display-name: ยง3Jetpack
+      display-name: '&3Jetpack'
       lore:
-        - ยง7Sneak to toggle on/off
-        - ยง7Double tap space to fly
-  fuel:
-    ==: org.bukkit.inventory.ItemStack
-    v: 1976
-    type: COAL
+        - '&7Sneak to toggle on/off'
+        - '&7Double tap space to fly'
