@@ -73,9 +73,9 @@ public class PlayerListener implements Listener {
         player.setAllowFlight(!currentAllowFlight);
         
         if (player.getAllowFlight()) {
-            player.sendMessage("§aJetpack activated! Double jump to fly.");
+            player.sendMessage(plugin.getMessage("flight_enabled"));
         } else {
-            player.sendMessage("§cJetpack deactivated.");
+            player.sendMessage(plugin.getMessage("flight_disabled"));
         }
     }
 
@@ -116,7 +116,7 @@ public class PlayerListener implements Listener {
             }
 
             if (!hasFuel(player)) {
-                player.sendMessage("§cYou are out of fuel!");
+                player.sendMessage(plugin.getMessage("out_of_fuel"));
                 event.setCancelled(true);
                 player.setAllowFlight(false);
                 return;
@@ -141,7 +141,7 @@ public class PlayerListener implements Listener {
             public void run() {
                 // 1. Check if they should STILL be flying
                 if (!player.isFlying() || !isWearingJetpack(player) || !hasFuel(player)) {
-                    player.sendMessage("§cJetpack stopped (Out of fuel or removed).");
+                    player.sendMessage(plugin.getMessage("jetpack_removed"));
                     player.setAllowFlight(false);
                     player.setFlying(false);
                     stopFlightTask(player); // Remove from Map
@@ -223,7 +223,7 @@ public class PlayerListener implements Listener {
             public void run() {
                 // Now we check the TRUE state of their inventory
                 if (!isWearingJetpack(player) || !hasFuel(player)) {
-                    player.sendMessage("§cJetpack removed! Flight disabled.");
+                    player.sendMessage(plugin.getMessage("jetpack_removed"));
                     player.setAllowFlight(false);
                     player.setFlying(false);
                     stopFlightTask(player); // Kills the fuel and particle loops

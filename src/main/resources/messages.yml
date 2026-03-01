@@ -1,0 +1,19 @@
+prefix: "{#FFaa00}[Jetpack] &r"
+
+usage: "{#FF5555}Usage: /jetpack <give|set|reload>"
+no_permission: "{#FF5555}You don't have permission to do that."
+not_player: "{#FF5555}Only players can use this command."
+player_not_found: "{#FF5555}Player not found."
+invalid_number: "{#FF5555}Amount must be a valid number."
+invalid_type: "{#FF5555}Invalid type. Use 'fuel' or 'jetpack'."
+
+give_fuel: "{#55FF55}You received {amount} jetpack fuel!"
+give_jetpack: "{#55FF55}You received a jetpack!"
+set_fuel: "{#55FF55}Current item set as Jetpack Fuel!"
+set_jetpack: "{#55FF55}Current item set as the Jetpack!"
+reloaded: "{#55FF55}Configuration and messages reloaded!"
+
+flight_enabled: "{#55FF55}Jetpack activated! Double jump to fly."
+flight_disabled: "{#FF5555}Jetpack deactivated."
+out_of_fuel: "{#FF5555}You are out of fuel!"
+jetpack_removed: "{#FF5555}Jetpack removed! Flight disabled."

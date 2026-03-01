@@ -17,7 +17,7 @@ public class JetpackCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         // 1. Check if there are any arguments (e.g., /jetpack <arg>)
         if (args.length == 0) {
-            sender.sendMessage("§cUsage: /jetpack <give|set|reload>");
+            sender.sendMessage(plugin.getMessage("usage"));
             return true;
         }
 
@@ -35,7 +35,7 @@ public class JetpackCommand implements CommandExecutor {
                 handleReload(sender);
                 break;
             default:
-                sender.sendMessage("§cUnknown sub-command.");
+                sender.sendMessage(plugin.getMessage("usage"));
                 break;
         }
 
@@ -45,7 +45,7 @@ public class JetpackCommand implements CommandExecutor {
     private void handleGive(CommandSender sender, String[] args) {
         // We need at least: /jetpack give <type> (Length of 2)
         if (args.length < 2) {
-            sender.sendMessage("§cUsage: /jetpack give <fuel|jetpack> [player] [amount]");
+            sender.sendMessage(plugin.getMessage("usage"));
             return;
         }
 
@@ -56,14 +56,14 @@ public class JetpackCommand implements CommandExecutor {
         if (args.length >= 3) {
             target = plugin.getServer().getPlayer(args[2]); // This is where we use 'plugin'!
             if (target == null) {
-                sender.sendMessage("§cPlayer not found.");
+                sender.sendMessage(plugin.getMessage("player_not_found"));
                 return;
             }
         } else {
             if (sender instanceof Player p) {
                 target = p;
             } else {
-                sender.sendMessage("§cConsole must specify a player name.");
+                sender.sendMessage(plugin.getMessage("not_player"));
                 return;
             }
         }
@@ -74,32 +74,32 @@ public class JetpackCommand implements CommandExecutor {
             try {
                 amount = Integer.parseInt(args[3]);
             } catch (NumberFormatException e) {
-                sender.sendMessage("§cAmount must be a number.");
+                sender.sendMessage(plugin.getMessage("invalid_number"));
                 return;
             }
         }
 
         // 3. The "Placeholder" logic for the items
         if (type.equals("fuel")) {
-            target.sendMessage("§aReceived " + amount + " jetpack fuel!");
+            target.sendMessage(plugin.getMessage("give_fuel").replace("{amount}", String.valueOf(amount)));
             // We will add the actual item giving logic in the next step
         } else if (type.equals("jetpack")) {
-            target.sendMessage("§aReceived a jetpack!");
+            target.sendMessage(plugin.getMessage("give_jetpack"));
         } else {
-            sender.sendMessage("§cInvalid type. Use 'fuel' or 'jetpack'.");
+            sender.sendMessage(plugin.getMessage("invalid_type"));
         }
     }
 
     private void handleSet(CommandSender sender, String[] args) {
         if (!(sender instanceof Player player)) {
-            sender.sendMessage("Only players can use 'set'.");
+            sender.sendMessage(plugin.getMessage("not_player"));
             return;
         }
-        player.sendMessage("§aItem in hand set as Jetpack/Fuel!");
+        player.sendMessage(plugin.getMessage("set_item"));
     }
 
     private void handleReload(CommandSender sender) {
         plugin.loadPluginData();
-        sender.sendMessage("§e[Jetpack] Configuration reloaded from config.yml!");
+        sender.sendMessage(plugin.getMessage("reloaded"));
     }
 }

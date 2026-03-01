@@ -7,7 +7,12 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 import me.blekdigits.listeners.PlayerListener;
 
-import org.bukkit.ChatColor;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+import net.md_5.bungee.api.ChatColor; // NOTE: Make sure this is the net.md_5 version!
+import java.io.File;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,11 +20,14 @@ public class JetpackPlugin extends JavaPlugin {
 
     private ItemStack fuelItem;
     private ItemStack jetpackItem;
+    private File messagesFile;
+    private FileConfiguration messagesConfig;
 
     @Override
     public void onEnable() {
         saveDefaultConfig();
         loadPluginData();
+        loadMessages();
         
         getCommand("jetpack").setExecutor(new JetpackCommand(this));
         
@@ -27,6 +35,15 @@ public class JetpackPlugin extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
         
         getLogger().info("Jetpack Plugin enabled!");
+    }
+
+    public void loadMessages() {
+        messagesFile = new File(getDataFolder(), "messages.yml");
+        if (!messagesFile.exists()) {
+            // This copies messages.yml from your src/main/resources folder
+            saveResource("messages.yml", false); 
+        }
+        messagesConfig = YamlConfiguration.loadConfiguration(messagesFile);
     }
 
     public void loadPluginData() {
@@ -104,6 +121,30 @@ public class JetpackPlugin extends JavaPlugin {
         // Read the double (e.g., 1.5), multiply by 20 ticks, and cast to long
         double seconds = getConfig().getDouble("fuel-burn-interval", 1.0);
         return (long) (seconds * 20L);
+    }
+
+    public String getMessage(String path) {
+        String rawMessage = messagesConfig.getString(path, "&cMessage missing: " + path);
+        
+        if (!path.equals("prefix")) {
+            String prefix = messagesConfig.getString("prefix", "");
+            rawMessage = prefix + rawMessage;
+        }
+        
+        // 2. Parse Hex Codes (Format: {#RRGGBB})
+        Pattern pattern = Pattern.compile("\\{#([a-fA-F0-9]{6})\\}");
+        Matcher matcher = pattern.matcher(rawMessage);
+        StringBuffer buffer = new StringBuffer();
+        
+        while (matcher.find()) {
+            String hex = "#" + matcher.group(1);
+            net.md_5.bungee.api.ChatColor color = net.md_5.bungee.api.ChatColor.of(hex);
+            matcher.appendReplacement(buffer, color.toString());
+        }
+        matcher.appendTail(buffer);
+        
+        // 3. Parse Legacy Codes (Format: &a, &l, etc.)
+        return net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', buffer.toString());
     }
 
     public ItemStack getFuelItem() { return fuelItem.clone(); }
