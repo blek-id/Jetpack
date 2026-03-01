@@ -1,5 +1,18 @@
+main: me.blekdigits.Jetpack
+version: 4.0.0
 name: Jetpack
-version: ${project.version}
-main: ${main.class}
 author: Blekdigits
-api-version: 1.13
+api-version: 1.21
+commands:
+  jetpack:
+    description: Main command for the Jetpack plugin
+    usage: /jetpack <give|set|reload>
+    permission: jetpack.admin
+
+permissions:
+  jetpack.admin:
+    description: Allows configuring and giving jetpacks.
+    default: op
+  jetpack.use:
+    description: Allows a player to activate and fly with the jetpack.
+    default: true

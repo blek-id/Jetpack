@@ -1,13 +1,4 @@
-me\blekdigits\jetpack\items\FuelItem.class
-me\blekdigits\jetpack\settings\MessagesSettings.class
-me\blekdigits\jetpack\PlayerCache.class
-me\blekdigits\jetpack\events\PlayerListener.class
-me\blekdigits\jetpack\commands\jetpack\JetpackCommandGroup.class
-me\blekdigits\jetpack\items\JetpackItem.class
-me\blekdigits\jetpack\events\PlayerListener$1.class
-me\blekdigits\jetpack\settings\Settings.class
-me\blekdigits\jetpack\commands\jetpack\GiveCommand.class
-me\blekdigits\jetpack\settings\ItemSettings.class
-me\blekdigits\jetpack\commands\jetpack\ReloadCommand.class
-me\blekdigits\jetpack\JetpackPlugin.class
-me\blekdigits\jetpack\commands\jetpack\SetCommand.class
+me\blekdigits\listeners\PlayerListener.class
+me\blekdigits\utils\Utils.class
+me\blekdigits\managers\PluginManager.class
+me\blekdigits\Jetpack.class
