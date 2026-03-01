@@ -1,0 +1,22 @@
+# Maven build output
+/target/
+
+# Local test server/runtime files
+/run/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE/editor files
+/.idea/
+*.iml
+/.vscode/
+/.classpath
+/.project
+/.settings/
+
+# Logs and temp files
+*.log
+*.tmp
+*.swp
