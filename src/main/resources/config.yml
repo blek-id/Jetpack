@@ -1,0 +1,16 @@
+# ========================================== #
+#          JETPACK PLUGIN SETTINGS           #
+# ========================================== #
+
+# How often (in seconds) should 1 fuel be consumed while flying?
+fuel-burn-interval: 1.0
+
+# The particle effect to display below the player's feet.
+# Examples: FLAME, SOUL_FIRE_FLAME, CAMPFIRE_COSY_SMOKE, CLOUD
+particle: "FLAME"
+
+# ------------------------------------------ #
+# NOTE: The 'fuel-item' and 'jetpack-item'   #
+# data will be automatically generated and   #
+# saved below this line when the plugin runs!#
+# ------------------------------------------ #

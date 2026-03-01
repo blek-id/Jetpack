@@ -1,4 +1,4 @@
-main: me.blekdigits.Jetpack
+main: me.blekdigits.jetpack.JetpackPlugin
 version: 4.0.0
 name: Jetpack
 author: Blekdigits

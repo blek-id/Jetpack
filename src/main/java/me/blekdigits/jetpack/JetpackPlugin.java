@@ -1,4 +1,4 @@
-package me.blekdigits;
+package me.blekdigits.jetpack;
 
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;

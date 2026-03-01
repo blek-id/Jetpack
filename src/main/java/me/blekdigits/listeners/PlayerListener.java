@@ -10,7 +10,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
-import me.blekdigits.JetpackPlugin;
+import me.blekdigits.jetpack.JetpackPlugin;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -55,9 +55,9 @@ public class PlayerListener implements Listener {
                  * 4,5,6. X, Y, Z spread (randomness/scatter)
                  * 7. Speed (how fast they fly away from the center)
                  */
-                player.getWorld().spawnParticle(particle, loc, 5, 0.1, 0.1, 0.1, 0.02);
+                player.getWorld().spawnParticle(particle, loc, 1, 0.1, 0.1, 0.1, 0.02);
             }
-        }.runTaskTimer(plugin, 0L, 2L); // 2L = 2 ticks
+        }.runTaskTimer(plugin, 0L, 10L); // 2L = 2 ticks
 
         activeParticles.put(player.getUniqueId(), task);
     }

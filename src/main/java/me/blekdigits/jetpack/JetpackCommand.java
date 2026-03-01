@@ -1,9 +1,11 @@
-package me.blekdigits;
+package me.blekdigits.jetpack;
 
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
 
 public class JetpackCommand implements CommandExecutor {
 
@@ -81,12 +83,15 @@ public class JetpackCommand implements CommandExecutor {
 
         // 3. The "Placeholder" logic for the items
         if (type.equals("fuel")) {
+            ItemStack item = plugin.getFuelItem();
+            item.setAmount(amount);
+            target.getInventory().addItem(item);
             target.sendMessage(plugin.getMessage("give_fuel").replace("{amount}", String.valueOf(amount)));
-            // We will add the actual item giving logic in the next step
         } else if (type.equals("jetpack")) {
-            target.sendMessage(plugin.getMessage("give_jetpack"));
-        } else {
-            sender.sendMessage(plugin.getMessage("invalid_type"));
+            ItemStack item = plugin.getJetpackItem();
+            item.setAmount(amount);
+            target.getInventory().addItem(item);
+            target.sendMessage(plugin.getMessage("give_jetpack").replace("{amount}", String.valueOf(amount)));
         }
     }
 
@@ -95,9 +100,35 @@ public class JetpackCommand implements CommandExecutor {
             sender.sendMessage(plugin.getMessage("not_player"));
             return;
         }
-        player.sendMessage(plugin.getMessage("set_item"));
-    }
 
+        if (args.length < 2) {
+            player.sendMessage(plugin.getMessage("usage_set"));
+            return;
+        }
+
+        ItemStack itemInHand = player.getInventory().getItemInMainHand();
+
+        if (itemInHand.getType() == Material.AIR) {
+            player.sendMessage(plugin.getMessage("must_hold_item"));
+            return;
+        }
+
+        String type = args[1].toLowerCase();
+        // We clone the item so if the player changes the one in their hand later, 
+        // the "saved" version stays the same.
+        ItemStack savedItem = itemInHand.clone();
+        savedItem.setAmount(1); 
+
+        if (type.equals("fuel")) {
+            plugin.setFuelItem(savedItem);
+            player.sendMessage(plugin.getMessage("set_fuel"));
+        } else if (type.equals("jetpack")) {
+            plugin.setJetpackItem(savedItem);
+            player.sendMessage(plugin.getMessage("set_jetpack"));
+        } else {
+            player.sendMessage(plugin.getMessage("invalid_type"));
+    }
+}
     private void handleReload(CommandSender sender) {
         plugin.loadPluginData();
         sender.sendMessage(plugin.getMessage("reloaded"));
