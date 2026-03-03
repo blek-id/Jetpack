@@ -5,6 +5,15 @@
 # How often (in seconds) should 1 fuel be consumed while flying?
 fuel-burn-interval: 1.0
 
+# How many pieces of fuel must be consumed to reduce the jetpack's durability by 1?
+# Higher number = Jetpack lasts longer. 
+# Lower number = Jetpack breaks faster.
+fuel-per-durability: 5
+
+# Should the jetpack be unrepairable in an anvil/grindstone?
+# If true, players can only RENAME the jetpack, not fix it with items or books.
+unrepairable: true
+
 # The particle effect to display below the player's feet.
 # Examples: FLAME, SOUL_FIRE_FLAME, CAMPFIRE_COSY_SMOKE, CLOUD
 particle: "FLAME"

@@ -1,6 +1,7 @@
 package me.blekdigits.listeners;
 
 import org.bukkit.GameMode;
+import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -79,6 +80,51 @@ public class PlayerListener implements Listener {
         }
     }
 
+    @EventHandler
+    public void onAnvilRepair(org.bukkit.event.inventory.PrepareAnvilEvent event) {
+        if (!plugin.isUnrepairable()) return;
+
+        org.bukkit.inventory.AnvilInventory inventory = event.getInventory();
+        ItemStack firstItem = inventory.getItem(0); // The item in the left slot
+        ItemStack secondItem = inventory.getItem(1); // The item in the middle slot (sacrifice/book)
+
+        // If there's no item in the first slot, we don't care
+        if (firstItem == null || firstItem.getType() == Material.AIR) return;
+
+        // Check for your custom NBT tag
+        org.bukkit.inventory.meta.ItemMeta meta = firstItem.getItemMeta();
+        if (meta == null || !meta.getPersistentDataContainer().has(JetpackPlugin.JETPACK_KEY, org.bukkit.persistence.PersistentDataType.BYTE)) {
+            return;
+        }
+
+        // If there is an item in the second slot, they are trying to Repair or Enchant.
+        // We set the result to null to block it.
+        if (secondItem != null && secondItem.getType() != Material.AIR) {
+            event.setResult(null);
+            // Optional: Send a message or play a "denied" sound here if you want
+        }
+        
+        // NOTE: If secondItem is null, but the result isn't, it means they are just renaming.
+        // By doing nothing here, the rename remains allowed.
+    }
+
+    @EventHandler
+    public void onGrindstone(org.bukkit.event.inventory.InventoryClickEvent event) {
+        if (!plugin.isUnrepairable()) return;
+        if (event.getInventory().getType() != org.bukkit.event.inventory.InventoryType.GRINDSTONE) return;
+        
+        // Check if they are clicking the result slot (slot 2)
+        if (event.getRawSlot() != 2) return;
+
+        ItemStack item = event.getCurrentItem();
+        if (item == null || item.getType() == Material.AIR) return;
+
+        if (item.getItemMeta().getPersistentDataContainer().has(JetpackPlugin.JETPACK_KEY, org.bukkit.persistence.PersistentDataType.BYTE)) {
+            event.setCancelled(true);
+            event.getWhoClicked().sendMessage(plugin.getMessage("cannot_repair_jetpack"));
+        }
+    }
+
     // --- NEW LOGIC BELOW ---
     @EventHandler
         public void onInventoryClick(org.bukkit.event.inventory.InventoryClickEvent event) {
@@ -137,6 +183,8 @@ public class PlayerListener implements Listener {
 
         // This is exactly like: const taskId = setInterval(() => { ... }, 1000);
         BukkitTask task = new BukkitRunnable() {
+            private int fuelCount = 0;
+
             @Override
             public void run() {
                 // 1. Check if they should STILL be flying
@@ -151,6 +199,12 @@ public class PlayerListener implements Listener {
 
                 // 2. Consume 1 fuel
                 consumeFuel(player);
+                fuelCount++;
+
+                if (fuelCount >= plugin.getFuelPerDurability()) {
+                    fuelCount = 0; // Reset counter
+                    reduceJetpackDurability(player);
+                }
             }
         }.runTaskTimer(plugin, 0L, plugin.getFuelBurnRate()); 
         // 0L = delay before first run (0 ticks)
@@ -191,8 +245,8 @@ public class PlayerListener implements Listener {
 
     private boolean isWearingJetpack(Player player) {
         ItemStack chestplate = player.getInventory().getChestplate();
-        if (chestplate == null) return false;
-        return chestplate.isSimilar(plugin.getJetpackItem());
+        if (chestplate == null || chestplate.getType() == org.bukkit.Material.AIR) return false;
+        return chestplate.getItemMeta().getPersistentDataContainer().has(JetpackPlugin.JETPACK_KEY, org.bukkit.persistence.PersistentDataType.BYTE);
     }
 
     private boolean hasFuel(Player player) {
@@ -230,5 +284,31 @@ public class PlayerListener implements Listener {
                 }
             }
         }.runTaskLater(plugin, 1L); // 1L = 1 tick delay
+    }
+
+    private void reduceJetpackDurability(Player player) {
+        ItemStack chest = player.getInventory().getChestplate();
+        if (chest == null) return;
+
+        org.bukkit.inventory.meta.ItemMeta meta = chest.getItemMeta();
+        if (meta instanceof org.bukkit.inventory.meta.Damageable damageable) {
+            int currentDamage = damageable.getDamage();
+            int maxDamage = chest.getType().getMaxDurability();
+
+            if (currentDamage >= maxDamage) {
+                // Jetpack is broken!
+                player.getInventory().setChestplate(null);
+                player.sendMessage(plugin.getMessage("jetpack_broken"));
+                
+                // Force stop flight since the item is gone
+                player.setAllowFlight(false);
+                player.setFlying(false);
+                stopFlightTask(player);
+            } else {
+                // Apply 1 point of damage
+                damageable.setDamage(currentDamage + 1);
+                chest.setItemMeta(damageable);
+            }
+        }
     }
 }
