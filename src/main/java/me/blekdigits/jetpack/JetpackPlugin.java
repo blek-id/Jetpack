@@ -7,15 +7,14 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.persistence.PersistentDataType;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import me.blekdigits.listeners.JetpackMenuListener;
 import me.blekdigits.listeners.PlayerListener;
+import me.blekdigits.utils.Utils;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import net.md_5.bungee.api.ChatColor; // NOTE: Make sure this is the net.md_5 version!
 import java.io.File;
 import java.io.IOException;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -28,18 +27,29 @@ public class JetpackPlugin extends JavaPlugin {
     private File messagesFile;
     private FileConfiguration messagesConfig;
     public static NamespacedKey JETPACK_KEY;
+    public static NamespacedKey SPEED_LEVEL_KEY;
+    public static NamespacedKey EFFICIENCY_LEVEL_KEY;
+    public static NamespacedKey DURABILITY_LEVEL_KEY;
+    private JetpackService jetpackService;
 
     @Override
     public void onEnable() {
         JETPACK_KEY = new NamespacedKey(this, "is_jetpack");
+        SPEED_LEVEL_KEY = new NamespacedKey(this, "jetpack_speed_level");
+        EFFICIENCY_LEVEL_KEY = new NamespacedKey(this, "jetpack_efficiency_level");
+        DURABILITY_LEVEL_KEY = new NamespacedKey(this, "jetpack_durability_level");
+        jetpackService = new JetpackService(this);
+
         saveDefaultConfig();
         loadPluginData();
         loadMessages();
         
-        getCommand("jetpack").setExecutor(new JetpackCommand(this));
+        if (getCommand("jetpack") != null) {
+            getCommand("jetpack").setExecutor(new JetpackCommand(this));
+        }
         
-        // REGISTER THE LISTENER HERE
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
+        getServer().getPluginManager().registerEvents(new JetpackMenuListener(this), this);
         
         getLogger().info("Jetpack Plugin enabled!");
     }
@@ -72,6 +82,24 @@ public class JetpackPlugin extends JavaPlugin {
         defaults.put("jetpack_broken", "{#FF5555}&l[!] &cYour jetpack has completely burned out and broken!");
         defaults.put("cannot_repair_jetpack", "{#FFAA00}&l[!] &eThis jetpack is too complex to be repaired or enchanted.");
         defaults.put("cannot_grind", "{#FFAA00}&eYou cannot use a grindstone on experimental jetpack technology.");
+        defaults.put("no_upgrade_permission", "{#FF5555}You do not have permission to upgrade jetpacks.");
+        defaults.put("no_repair_permission", "{#FF5555}You do not have permission to repair jetpacks.");
+        defaults.put("menu_title", "{#55AAFF}Jetpack Upgrade & Repair");
+        defaults.put("menu_speed", "{#55AAFF}Upgrade Speed");
+        defaults.put("menu_efficiency", "{#55FF55}Upgrade Efficiency");
+        defaults.put("menu_durability", "{#FFAA00}Upgrade Durability");
+        defaults.put("menu_repair", "{#AAAAFF}Repair Armor");
+        defaults.put("upgrade_success", "{#55FF55}Upgraded {type} to level {level}!");
+        defaults.put("upgrade_maxed", "{#FFAA00}{type} is already at max level.");
+        defaults.put("upgrade_missing_material", "{#FF5555}You need {cost}.");
+        defaults.put("repair_success", "{#55FF55}Jetpack repaired by {amount} durability.");
+        defaults.put("repair_not_damaged", "{#FFAA00}Your jetpack does not need repair.");
+        defaults.put("repair_not_damageable", "{#FF5555}This jetpack cannot be repaired.");
+        defaults.put("menu_invalid_item", "{#FF5555}Hold the same jetpack in your main hand to use this menu.");
+        defaults.put("menu_next_level", "&7Next: &fLvl {level}");
+        defaults.put("menu_cost", "&7Cost: &f{cost}");
+        defaults.put("menu_current_value", "&7Current: &f{value}");
+        defaults.put("menu_maxed", "&aMAX LEVEL");
 
         boolean modified = false;
         for (Map.Entry<String, String> entry : defaults.entrySet()) {
@@ -110,41 +138,127 @@ public class JetpackPlugin extends JavaPlugin {
             getConfig().set("jetpack-item", jetpackItem);
         }
 
+        markAsJetpack(jetpackItem);
+        applyJetpackLore(jetpackItem);
+        getConfig().set("jetpack-item", jetpackItem);
+
         if (!getConfig().contains("fuel-per-durability")) {
-            getConfig().set("fuel-per-durability", 5); 
+            getConfig().set("fuel-per-durability", 5);
         }
 
         if (!getConfig().contains("particle")) {
             getConfig().set("particle", "FLAME");
         }
-        // Add this inside your loadPluginData() method, right under the particle setup:
+
         if (!getConfig().contains("fuel-burn-interval")) {
-            getConfig().set("fuel-burn-interval", 1.0); // 1.0 seconds per fuel consumed
+            getConfig().set("fuel-burn-interval", 1.0);
+        }
+
+        if (!getConfig().contains("base-fly-speed")) {
+            getConfig().set("base-fly-speed", 0.1);
         }
 
         if (!getConfig().contains("unrepairable")) {
-            getConfig().set("unrepairable", true); 
+            getConfig().set("unrepairable", true);
         }
 
-        saveConfig(); // Save any newly created defaults to the actual file
+        if (!getConfig().contains("upgrades.speed.tiers.1.value")) {
+            getConfig().set("upgrades.speed.tiers.1.value", 0.12);
+            getConfig().set("upgrades.speed.tiers.1.cost.provider", "MATERIAL");
+            getConfig().set("upgrades.speed.tiers.1.cost.material", "IRON_INGOT");
+            getConfig().set("upgrades.speed.tiers.1.cost.amount", 8);
+            getConfig().set("upgrades.speed.tiers.2.value", 0.15);
+            getConfig().set("upgrades.speed.tiers.2.cost.provider", "MATERIAL");
+            getConfig().set("upgrades.speed.tiers.2.cost.material", "GOLD_INGOT");
+            getConfig().set("upgrades.speed.tiers.2.cost.amount", 10);
+            getConfig().set("upgrades.speed.tiers.3.value", 0.18);
+            getConfig().set("upgrades.speed.tiers.3.cost.provider", "MATERIAL");
+            getConfig().set("upgrades.speed.tiers.3.cost.material", "DIAMOND");
+            getConfig().set("upgrades.speed.tiers.3.cost.amount", 6);
+        }
+
+        if (!getConfig().contains("upgrades.efficiency.tiers.1.value")) {
+            getConfig().set("upgrades.efficiency.tiers.1.value", 1.2);
+            getConfig().set("upgrades.efficiency.tiers.1.cost.provider", "MATERIAL");
+            getConfig().set("upgrades.efficiency.tiers.1.cost.material", "REDSTONE");
+            getConfig().set("upgrades.efficiency.tiers.1.cost.amount", 16);
+            getConfig().set("upgrades.efficiency.tiers.2.value", 1.4);
+            getConfig().set("upgrades.efficiency.tiers.2.cost.provider", "MATERIAL");
+            getConfig().set("upgrades.efficiency.tiers.2.cost.material", "LAPIS_LAZULI");
+            getConfig().set("upgrades.efficiency.tiers.2.cost.amount", 20);
+            getConfig().set("upgrades.efficiency.tiers.3.value", 1.6);
+            getConfig().set("upgrades.efficiency.tiers.3.cost.provider", "MATERIAL");
+            getConfig().set("upgrades.efficiency.tiers.3.cost.material", "EMERALD");
+            getConfig().set("upgrades.efficiency.tiers.3.cost.amount", 8);
+        }
+
+        if (!getConfig().contains("upgrades.durability.tiers.1.value")) {
+            getConfig().set("upgrades.durability.tiers.1.value", 1.25);
+            getConfig().set("upgrades.durability.tiers.1.cost.provider", "MATERIAL");
+            getConfig().set("upgrades.durability.tiers.1.cost.material", "IRON_BLOCK");
+            getConfig().set("upgrades.durability.tiers.1.cost.amount", 4);
+            getConfig().set("upgrades.durability.tiers.2.value", 1.5);
+            getConfig().set("upgrades.durability.tiers.2.cost.provider", "MATERIAL");
+            getConfig().set("upgrades.durability.tiers.2.cost.material", "DIAMOND_BLOCK");
+            getConfig().set("upgrades.durability.tiers.2.cost.amount", 2);
+            getConfig().set("upgrades.durability.tiers.3.value", 2.0);
+            getConfig().set("upgrades.durability.tiers.3.cost.provider", "MATERIAL");
+            getConfig().set("upgrades.durability.tiers.3.cost.material", "NETHERITE_INGOT");
+            getConfig().set("upgrades.durability.tiers.3.cost.amount", 1);
+        }
+
+        if (!getConfig().contains("repair.mode")) {
+            getConfig().set("repair.mode", "PERCENT");
+            getConfig().set("repair.amount", 15.0);
+            getConfig().set("repair.cost.provider", "MATERIAL");
+            getConfig().set("repair.cost.material", "IRON_INGOT");
+            getConfig().set("repair.cost.amount", 6);
+        }
+
+        for (JetpackService.UpgradeType type : JetpackService.UpgradeType.values()) {
+            String basePath = "upgrades." + type.getPath() + ".tiers";
+            if (getConfig().isConfigurationSection(basePath)) {
+                for (String key : getConfig().getConfigurationSection(basePath).getKeys(false)) {
+                    String costPath = basePath + "." + key + ".cost";
+                    if (!getConfig().contains(costPath + ".provider")) {
+                        getConfig().set(costPath + ".provider", "MATERIAL");
+                    }
+                }
+            }
+        }
+
+        if (!getConfig().contains("repair.cost.provider")) {
+            getConfig().set("repair.cost.provider", "MATERIAL");
+        }
+
+        if (!getConfig().contains("jetpack-lore")) {
+            List<String> defaultLore = new ArrayList<>();
+            defaultLore.add("&7Fuel: &f{fuel_name}");
+            defaultLore.add("&7Speed Level: &f{speed_level} &8(&7{speed_value}&8)");
+            defaultLore.add("&7Efficiency Level: &f{efficiency_level} &8(&7x{efficiency_value}&8)");
+            defaultLore.add("&7Durability Level: &f{durability_level} &8(&7x{durability_value}&8)");
+            defaultLore.add("&8Shift + Right Click while holding to upgrade.");
+            getConfig().set("jetpack-lore", defaultLore);
+        }
+
+        saveConfig();
     }
 
     private ItemStack createDefaultJetpack() {
         ItemStack item = new ItemStack(Material.CHAINMAIL_CHESTPLATE);
         ItemMeta meta = item.getItemMeta();
         if (meta != null) {
-            meta.setDisplayName(ChatColor.GREEN + "Jetpack");
+            meta.setDisplayName(Utils.colorize("&aJetpack"));
             meta.getPersistentDataContainer().set(JETPACK_KEY, PersistentDataType.BYTE, (byte) 1);
-            List<String> lore = new ArrayList<>();
-            lore.add(ChatColor.WHITE + "Fuel: Coal");
-            lore.add(ChatColor.GRAY + "" + ChatColor.ITALIC + "Use shift to toggle jetpack.");
-            meta.setLore(lore);
+            meta.getPersistentDataContainer().set(SPEED_LEVEL_KEY, PersistentDataType.INTEGER, 0);
+            meta.getPersistentDataContainer().set(EFFICIENCY_LEVEL_KEY, PersistentDataType.INTEGER, 0);
+            meta.getPersistentDataContainer().set(DURABILITY_LEVEL_KEY, PersistentDataType.INTEGER, 0);
             item.setItemMeta(meta);
         }
+        applyJetpackLore(item);
         return item;
     }
 
-    // Updated setters to also save to the config file
     public void setFuelItem(ItemStack item) {
         this.fuelItem = item.clone();
         getConfig().set("fuel-item", this.fuelItem);
@@ -153,12 +267,45 @@ public class JetpackPlugin extends JavaPlugin {
 
     public void setJetpackItem(ItemStack item) {
         this.jetpackItem = item.clone();
+        markAsJetpack(this.jetpackItem);
+        applyJetpackLore(this.jetpackItem);
         getConfig().set("jetpack-item", this.jetpackItem);
         saveConfig();
+    }
+
+    public void markAsJetpack(ItemStack item) {
+        if (item == null || item.getType() == Material.AIR) return;
+        ItemMeta meta = item.getItemMeta();
+        if (meta == null) return;
+
+        meta.getPersistentDataContainer().set(JETPACK_KEY, PersistentDataType.BYTE, (byte) 1);
+        if (!meta.getPersistentDataContainer().has(SPEED_LEVEL_KEY, PersistentDataType.INTEGER)) {
+            meta.getPersistentDataContainer().set(SPEED_LEVEL_KEY, PersistentDataType.INTEGER, 0);
+        }
+        if (!meta.getPersistentDataContainer().has(EFFICIENCY_LEVEL_KEY, PersistentDataType.INTEGER)) {
+            meta.getPersistentDataContainer().set(EFFICIENCY_LEVEL_KEY, PersistentDataType.INTEGER, 0);
+        }
+        if (!meta.getPersistentDataContainer().has(DURABILITY_LEVEL_KEY, PersistentDataType.INTEGER)) {
+            meta.getPersistentDataContainer().set(DURABILITY_LEVEL_KEY, PersistentDataType.INTEGER, 0);
+        }
+        item.setItemMeta(meta);
+    }
+
+    public void applyJetpackLore(ItemStack item) {
+        if (jetpackService == null || item == null || item.getType() == Material.AIR) return;
+        jetpackService.updateJetpackLore(item);
     }
     
     public int getFuelPerDurability() {
         return getConfig().getInt("fuel-per-durability", 5);
+    }
+
+    public double getFuelBurnIntervalSeconds() {
+        return getConfig().getDouble("fuel-burn-interval", 1.0);
+    }
+
+    public float getBaseFlySpeed() {
+        return (float) getConfig().getDouble("base-fly-speed", 0.1);
     }
     
     public org.bukkit.Particle getJetpackParticle() {
@@ -179,35 +326,31 @@ public class JetpackPlugin extends JavaPlugin {
     
     // Add this new getter method anywhere in the class:
     public long getFuelBurnRate() {
-        // Read the double (e.g., 1.5), multiply by 20 ticks, and cast to long
-        double seconds = getConfig().getDouble("fuel-burn-interval", 1.0);
+        double seconds = getFuelBurnIntervalSeconds();
         return (long) (seconds * 20L);
     }
 
     public String getMessage(String path) {
-        String rawMessage = messagesConfig.getString(path, "&cMessage missing: " + path);
-        
+        String message = getRawMessage(path);
         if (!path.equals("prefix")) {
-            String prefix = messagesConfig.getString("prefix", "");
-            rawMessage = prefix + rawMessage;
+            message = getRawMessage("prefix") + message;
         }
-        
-        // 2. Parse Hex Codes (Format: {#RRGGBB})
-        Pattern pattern = Pattern.compile("\\{#([a-fA-F0-9]{6})\\}");
-        Matcher matcher = pattern.matcher(rawMessage);
-        StringBuffer buffer = new StringBuffer();
-        
-        while (matcher.find()) {
-            String hex = "#" + matcher.group(1);
-            net.md_5.bungee.api.ChatColor color = net.md_5.bungee.api.ChatColor.of(hex);
-            matcher.appendReplacement(buffer, color.toString());
-        }
-        matcher.appendTail(buffer);
-        
-        // 3. Parse Legacy Codes (Format: &a, &l, etc.)
-        return net.md_5.bungee.api.ChatColor.translateAlternateColorCodes('&', buffer.toString());
+        return Utils.colorize(message);
+    }
+
+    public String getRawMessage(String path) {
+        return messagesConfig.getString(path, "&cMessage missing: " + path);
     }
 
     public ItemStack getFuelItem() { return fuelItem.clone(); }
-    public ItemStack getJetpackItem() { return jetpackItem.clone(); }
+    public ItemStack getJetpackItem() {
+        ItemStack clone = jetpackItem.clone();
+        markAsJetpack(clone);
+        applyJetpackLore(clone);
+        return clone;
+    }
+
+    public JetpackService getJetpackService() {
+        return jetpackService;
+    }
 }

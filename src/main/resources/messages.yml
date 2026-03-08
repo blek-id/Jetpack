@@ -28,3 +28,23 @@ jetpack_broken: "{#FF5555}&l[!] &cYour jetpack has completely burned out and bro
 # Technical/Blocking
 cannot_repair_jetpack: "{#FFAA00}&l[!] &eThis jetpack is too complex to be repaired or enchanted."
 cannot_grind: "{#FFAA00}&eYou cannot use a grindstone on experimental jetpack technology."
+
+# Upgrade & Repair
+no_upgrade_permission: "{#FF5555}You do not have permission to upgrade jetpacks."
+no_repair_permission: "{#FF5555}You do not have permission to repair jetpacks."
+menu_title: "{#55AAFF}Jetpack Upgrade & Repair"
+menu_speed: "{#55AAFF}Upgrade Speed"
+menu_efficiency: "{#55FF55}Upgrade Efficiency"
+menu_durability: "{#FFAA00}Upgrade Durability"
+menu_repair: "{#AAAAFF}Repair Armor"
+upgrade_success: "{#55FF55}Upgraded {type} to level {level}!"
+upgrade_maxed: "{#FFAA00}{type} is already at max level."
+upgrade_missing_material: "{#FF5555}You need {cost}."
+repair_success: "{#55FF55}Jetpack repaired by {amount} durability."
+repair_not_damaged: "{#FFAA00}Your jetpack does not need repair."
+repair_not_damageable: "{#FF5555}This jetpack cannot be repaired."
+menu_invalid_item: "{#FF5555}Hold the same jetpack in your main hand to use this menu."
+menu_next_level: "&7Next: &fLvl {level}"
+menu_cost: "&7Cost: &f{cost}"
+menu_current_value: "&7Current: &f{value}"
+menu_maxed: "&aMAX LEVEL"

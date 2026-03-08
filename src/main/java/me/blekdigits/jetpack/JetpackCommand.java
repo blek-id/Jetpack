@@ -17,7 +17,11 @@ public class JetpackCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
-        // 1. Check if there are any arguments (e.g., /jetpack <arg>)
+        if (!sender.hasPermission("jetpack.admin")) {
+            sender.sendMessage(plugin.getMessage("no_permission"));
+            return true;
+        }
+
         if (args.length == 0) {
             sender.sendMessage(plugin.getMessage("usage"));
             return true;
@@ -25,7 +29,6 @@ public class JetpackCommand implements CommandExecutor {
 
         String subCommand = args[0].toLowerCase();
 
-        // 2. Route the sub-commands (Like a switch statement in JS)
         switch (subCommand) {
             case "give":
                 handleGive(sender, args);
@@ -45,18 +48,16 @@ public class JetpackCommand implements CommandExecutor {
     }
 
     private void handleGive(CommandSender sender, String[] args) {
-        // We need at least: /jetpack give <type> (Length of 2)
         if (args.length < 2) {
             sender.sendMessage(plugin.getMessage("usage"));
             return;
         }
 
-        String type = args[1].toLowerCase(); // fuel or jetpack
+        String type = args[1].toLowerCase();
 
-        // 1. Determine the Target Player
         Player target;
         if (args.length >= 3) {
-            target = plugin.getServer().getPlayer(args[2]); // This is where we use 'plugin'!
+            target = plugin.getServer().getPlayer(args[2]);
             if (target == null) {
                 sender.sendMessage(plugin.getMessage("player_not_found"));
                 return;
@@ -70,7 +71,6 @@ public class JetpackCommand implements CommandExecutor {
             }
         }
 
-        // 2. Determine the Amount
         int amount = 1;
         if (args.length >= 4) {
             try {
@@ -81,7 +81,6 @@ public class JetpackCommand implements CommandExecutor {
             }
         }
 
-        // 3. The "Placeholder" logic for the items
         if (type.equals("fuel")) {
             ItemStack item = plugin.getFuelItem();
             item.setAmount(amount);
@@ -92,6 +91,8 @@ public class JetpackCommand implements CommandExecutor {
             item.setAmount(amount);
             target.getInventory().addItem(item);
             target.sendMessage(plugin.getMessage("give_jetpack").replace("{amount}", String.valueOf(amount)));
+        } else {
+            sender.sendMessage(plugin.getMessage("invalid_type"));
         }
     }
 
@@ -114,10 +115,8 @@ public class JetpackCommand implements CommandExecutor {
         }
 
         String type = args[1].toLowerCase();
-        // We clone the item so if the player changes the one in their hand later, 
-        // the "saved" version stays the same.
         ItemStack savedItem = itemInHand.clone();
-        savedItem.setAmount(1); 
+        savedItem.setAmount(1);
 
         if (type.equals("fuel")) {
             plugin.setFuelItem(savedItem);
@@ -127,10 +126,12 @@ public class JetpackCommand implements CommandExecutor {
             player.sendMessage(plugin.getMessage("set_jetpack"));
         } else {
             player.sendMessage(plugin.getMessage("invalid_type"));
+        }
     }
-}
+
     private void handleReload(CommandSender sender) {
         plugin.loadPluginData();
+        plugin.loadMessages();
         sender.sendMessage(plugin.getMessage("reloaded"));
     }
 }

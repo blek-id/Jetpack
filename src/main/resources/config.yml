@@ -2,21 +2,119 @@
 #          JETPACK PLUGIN SETTINGS           #
 # ========================================== #
 
-# How often (in seconds) should 1 fuel be consumed while flying?
+# Base fuel burn interval (seconds).
+# Efficiency upgrades multiply this interval.
 fuel-burn-interval: 1.0
 
-# How many pieces of fuel must be consumed to reduce the jetpack's durability by 1?
-# Higher number = Jetpack lasts longer. 
-# Lower number = Jetpack breaks faster.
+# Base amount of consumed fuel before 1 durability loss.
+# Durability upgrades multiply this value.
 fuel-per-durability: 5
 
-# Should the jetpack be unrepairable in an anvil/grindstone?
-# If true, players can only RENAME the jetpack, not fix it with items or books.
+# Base flight speed for level 0 jetpack.
+# Speed upgrade tier values override this per level.
+base-fly-speed: 0.1
+
+# Should the jetpack be unrepairable in vanilla anvil/grindstone?
 unrepairable: true
 
 # The particle effect to display below the player's feet.
 # Examples: FLAME, SOUL_FIRE_FLAME, CAMPFIRE_COSY_SMOKE, CLOUD
 particle: "FLAME"
+
+# Lore template for all jetpack items.
+jetpack-lore:
+  - "&7Fuel: &f{fuel_name}"
+  - "&7Speed Level: &f{speed_level} &8(&7{speed_value}&8)"
+  - "&7Efficiency Level: &f{efficiency_level} &8(&7x{efficiency_value}&8)"
+  - "&7Durability Level: &f{durability_level} &8(&7x{durability_value}&8)"
+  - "&8Shift + Right Click while holding to upgrade."
+
+# Upgrade tier system (fully configurable)
+upgrades:
+  speed:
+    tiers:
+      1:
+        value: 0.12
+        cost:
+          # MATERIAL | MONEY | MMOITEMS
+          provider: MATERIAL
+          material: IRON_INGOT
+          amount: 8
+          money: 0
+          mmoitems:
+            type: MATERIAL
+            id: JETPACK_CORE
+            amount: 1
+      2:
+        value: 0.15
+        cost:
+          provider: MATERIAL
+          material: GOLD_INGOT
+          amount: 10
+      3:
+        value: 0.18
+        cost:
+          provider: MATERIAL
+          material: DIAMOND
+          amount: 6
+
+  efficiency:
+    tiers:
+      1:
+        value: 1.2
+        cost:
+          provider: MATERIAL
+          material: REDSTONE
+          amount: 16
+      2:
+        value: 1.4
+        cost:
+          provider: MATERIAL
+          material: LAPIS_LAZULI
+          amount: 20
+      3:
+        value: 1.6
+        cost:
+          provider: MATERIAL
+          material: EMERALD
+          amount: 8
+
+  durability:
+    tiers:
+      1:
+        value: 1.25
+        cost:
+          provider: MATERIAL
+          material: IRON_BLOCK
+          amount: 4
+      2:
+        value: 1.5
+        cost:
+          provider: MATERIAL
+          material: DIAMOND_BLOCK
+          amount: 2
+      3:
+        value: 2.0
+        cost:
+          provider: MATERIAL
+          material: NETHERITE_INGOT
+          amount: 1
+
+# Repair config (button 4)
+repair:
+  # PERCENT = repair.amount is % of max durability each click
+  # FLAT    = repair.amount is raw durability points each click
+  mode: PERCENT
+  amount: 15.0
+  cost:
+    provider: MATERIAL
+    material: IRON_INGOT
+    amount: 6
+    money: 0
+    mmoitems:
+      type: MATERIAL
+      id: JETPACK_REPAIR_KIT
+      amount: 1
 
 # ------------------------------------------ #
 # NOTE: The 'fuel-item' and 'jetpack-item'   #

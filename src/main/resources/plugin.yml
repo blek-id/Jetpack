@@ -1,8 +1,9 @@
 main: me.blekdigits.jetpack.JetpackPlugin
-version: 4.1.0
+version: 4.2.0
 name: Jetpack
 author: Blekdigits
 api-version: 1.21
+softdepend: [Vault, MMOItems]
 commands:
   jetpack:
     description: Main command for the Jetpack plugin
@@ -15,4 +16,10 @@ permissions:
     default: op
   jetpack.use:
     description: Allows a player to activate and fly with the jetpack.
+    default: true
+  jetpack.upgrade:
+    description: Allows a player to upgrade jetpack stats.
+    default: true
+  jetpack.repair:
+    description: Allows a player to repair jetpack durability from the menu.
     default: true

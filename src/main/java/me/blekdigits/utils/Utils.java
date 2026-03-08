@@ -7,12 +7,23 @@ import net.md_5.bungee.api.ChatColor;
 public class Utils {
     
     public static String colorize(String msg) {
-        Matcher match = Pattern.compile("#[a-fA-F0-9]{6}").matcher(msg);
-        while (match.find()) {
-            String color = msg.substring(match.start(), match.end());
-            msg = msg.replace(color, String.valueOf(ChatColor.of(color)));
-            match = Pattern.compile("#[a-fA-F0-9]{6}").matcher(msg);
+        Matcher braceMatch = Pattern.compile("\\{#([a-fA-F0-9]{6})\\}").matcher(msg);
+        StringBuffer buffer = new StringBuffer();
+        while (braceMatch.find()) {
+            String color = "#" + braceMatch.group(1);
+            braceMatch.appendReplacement(buffer, ChatColor.of(color).toString());
         }
+        braceMatch.appendTail(buffer);
+
+        msg = buffer.toString();
+
+        Matcher directMatch = Pattern.compile("#[a-fA-F0-9]{6}").matcher(msg);
+        while (directMatch.find()) {
+            String color = msg.substring(directMatch.start(), directMatch.end());
+            msg = msg.replace(color, String.valueOf(ChatColor.of(color)));
+            directMatch = Pattern.compile("#[a-fA-F0-9]{6}").matcher(msg);
+        }
+
         return ChatColor.translateAlternateColorCodes('&', msg);
     }
     
