@@ -278,7 +278,7 @@ public class JetpackService {
         if (cost == null) return "Unknown";
         return switch (cost.provider()) {
             case MONEY -> "$" + formatValue(cost.money());
-            case MMOITEMS -> cost.amount() + "x " + cost.mmoType() + ":" + cost.mmoId();
+            case MMOITEMS -> cost.amount() + "x " + beautifyId(cost.mmoId());
             case MATERIAL -> cost.amount() + "x " + beautifyMaterial(cost.material());
         };
     }
@@ -476,7 +476,12 @@ public class JetpackService {
     }
 
     public static String beautifyMaterial(Material material) {
-        String name = material.name().toLowerCase(Locale.ROOT).replace('_', ' ');
+        return beautifyId(material.name());
+    }
+
+    public static String beautifyId(String id) {
+        if (id == null || id.isBlank()) return "Unknown";
+        String name = id.toLowerCase(Locale.ROOT).replace('_', ' ');
         String[] parts = name.split(" ");
         StringBuilder output = new StringBuilder();
         for (String part : parts) {
@@ -486,8 +491,12 @@ public class JetpackService {
         return output.toString().trim();
     }
 
-    private static String formatValue(double value) {
-        return (Math.floor(value) == value) ? String.valueOf((int) value) : String.format(Locale.US, "%.2f", value);
+    public static String formatValue(double value) {
+        if (Math.floor(value) == value) return String.valueOf((int) value);
+        String formatted = String.format(Locale.US, "%.2f", value);
+        formatted = formatted.replaceAll("0+$", "");
+        formatted = formatted.replaceAll("\\.$", "");
+        return formatted;
     }
 
     public record UpgradeResult(Status status, int level, Cost cost) {

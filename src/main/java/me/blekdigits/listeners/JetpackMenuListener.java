@@ -16,6 +16,7 @@ import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.event.inventory.InventoryDragEvent;
+import org.bukkit.event.Event;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.EquipmentSlot;
 import org.bukkit.inventory.Inventory;
@@ -70,6 +71,8 @@ public class JetpackMenuListener implements Listener {
         }
 
         event.setCancelled(true);
+        event.setUseItemInHand(Event.Result.DENY);
+        event.setUseInteractedBlock(Event.Result.DENY);
         openMenu(player);
     }
 
@@ -81,6 +84,8 @@ public class JetpackMenuListener implements Listener {
 
         // Hard-cancel every click while this menu is open (top + bottom inventories).
         event.setCancelled(true);
+        // Force client to resync inventory to prevent visual desync / ghost items.
+        plugin.getServer().getScheduler().runTask(plugin, player::updateInventory);
         if (event.getClickedInventory() == null || event.getClickedInventory() != event.getView().getTopInventory()) return;
 
         ItemStack inHand = player.getInventory().getItemInMainHand();
@@ -126,11 +131,8 @@ public class JetpackMenuListener implements Listener {
         if (!isJetpackMenu(event.getView().getTopInventory())) return;
         if (!openedMenus.contains(player.getUniqueId())) return;
 
-        int topSize = event.getView().getTopInventory().getSize();
-        boolean touchesTop = event.getRawSlots().stream().anyMatch(slot -> slot < topSize);
-        if (touchesTop) {
-            event.setCancelled(true);
-        }
+        // Cancel ALL drags while the jetpack menu is open.
+        event.setCancelled(true);
     }
 
     @EventHandler
@@ -149,8 +151,8 @@ public class JetpackMenuListener implements Listener {
         inventory.setItem(DURABILITY_SLOT, createUpgradeButton(Material.ANVIL, plugin.getRawMessage("menu_durability"), inHand, UpgradeType.DURABILITY));
         inventory.setItem(REPAIR_SLOT, createRepairButton(inHand));
 
-        openedMenus.add(player.getUniqueId());
         player.openInventory(inventory);
+        openedMenus.add(player.getUniqueId());
     }
 
     private ItemStack createUpgradeButton(Material icon, String name, ItemStack jetpack, UpgradeType type) {
@@ -160,21 +162,44 @@ public class JetpackMenuListener implements Listener {
 
         meta.setDisplayName(Utils.colorize(name));
         List<String> lore = new ArrayList<>();
-        lore.add(Utils.colorize(plugin.getMessage("menu_current_value")
-                .replace("{value}", String.valueOf(jetpackService.getCurrentValue(jetpack, type)))));
+
+        int currentLevel = jetpackService.getLevel(jetpack, type);
+        double currentValue = jetpackService.getCurrentValue(jetpack, type);
+        String currentDesc = describeValue(type, currentValue);
+
+        lore.add(Utils.colorize("&7Level: &f" + currentLevel));
+        lore.add(Utils.colorize("&7" + currentDesc));
+        lore.add("");
 
         Tier next = jetpackService.getNextTier(jetpack, type);
         if (next == null) {
-            lore.add(Utils.colorize(plugin.getMessage("menu_maxed")));
+            lore.add(Utils.colorize("&aMAX LEVEL"));
         } else {
-            lore.add(Utils.colorize(plugin.getMessage("menu_next_level").replace("{level}", String.valueOf(next.level()))));
-            lore.add(Utils.colorize(plugin.getMessage("menu_cost")
-                    .replace("{cost}", jetpackService.formatCost(next.cost()))));
+            String nextDesc = describeValue(type, next.value());
+            lore.add(Utils.colorize("&7Next Level: &f" + next.level()));
+            lore.add(Utils.colorize("&7" + nextDesc));
+            lore.add("");
+            lore.add(Utils.colorize("&7Cost: &f" + jetpackService.formatCost(next.cost())));
         }
 
         meta.setLore(lore);
         button.setItemMeta(meta);
         return button;
+    }
+
+    private String describeValue(UpgradeType type, double value) {
+        return switch (type) {
+            case SPEED -> "Flight Speed: &f" + JetpackService.formatValue(value);
+            case EFFICIENCY -> {
+                double seconds = plugin.getConfig().getDouble("fuel-burn-interval", 1.0) * Math.max(0.1, value);
+                yield "Fuel Burn Rate: &fEvery " + JetpackService.formatValue(seconds) + "s";
+            }
+            case DURABILITY -> {
+                int baseFpd = plugin.getConfig().getInt("fuel-per-durability", 5);
+                int actual = Math.max(1, (int) Math.round(baseFpd * Math.max(0.1, value)));
+                yield "Durability: &f1 wear per " + actual + " fuel uses";
+            }
+        };
     }
 
     private ItemStack createRepairButton(ItemStack jetpack) {
@@ -190,8 +215,16 @@ public class JetpackMenuListener implements Listener {
             lore.add(Utils.colorize("&7Current Durability: &f" + remaining + "&7/&f" + maxDurability));
         }
 
+        String mode = plugin.getConfig().getString("repair.mode", "PERCENT").toUpperCase(java.util.Locale.ROOT);
+        double configuredAmount = plugin.getConfig().getDouble("repair.amount", 10.0);
+        if ("FLAT".equals(mode)) {
+            lore.add(Utils.colorize("&7Restores: &f" + (int) Math.round(configuredAmount) + " durability"));
+        } else {
+            lore.add(Utils.colorize("&7Restores: &f" + (int) configuredAmount + "% durability"));
+        }
+
         Cost repairCost = jetpackService.getRepairCost();
-        lore.add(Utils.colorize(plugin.getMessage("menu_cost")
+        lore.add(Utils.colorize(plugin.getRawMessage("menu_cost")
                 .replace("{cost}", jetpackService.formatCost(repairCost))));
 
         meta.setLore(lore);

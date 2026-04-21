@@ -103,7 +103,8 @@ public class JetpackPlugin extends JavaPlugin {
 
         boolean modified = false;
         for (Map.Entry<String, String> entry : defaults.entrySet()) {
-            if (!messagesConfig.contains(entry.getKey())) {
+            String current = messagesConfig.getString(entry.getKey());
+            if (current == null || !current.equals(entry.getValue())) {
                 messagesConfig.set(entry.getKey(), entry.getValue());
                 modified = true;
             }

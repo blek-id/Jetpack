@@ -172,6 +172,7 @@ public class PlayerListener implements Listener {
                 return;
             }
 
+            player.setAllowFlight(true);
             player.setFlying(true);
             ItemStack jetpack = player.getInventory().getChestplate();
             applyJetpackFlySpeed(player, jetpack);
