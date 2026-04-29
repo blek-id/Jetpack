@@ -75,7 +75,11 @@ public class JetpackService {
         ItemMeta meta = item.getItemMeta();
         if (meta == null) return;
 
-        String fuelName = beautifyMaterial(plugin.getFuelItem().getType());
+        ItemStack fuelStack = plugin.getFuelItem();
+        ItemMeta fuelMeta = fuelStack.getItemMeta();
+        String fuelName = (fuelMeta != null && fuelMeta.hasDisplayName())
+                ? fuelMeta.getDisplayName()
+                : beautifyMaterial(fuelStack.getType());
         int speedLevel = getLevel(item, UpgradeType.SPEED);
         int efficiencyLevel = getLevel(item, UpgradeType.EFFICIENCY);
         int durabilityLevel = getLevel(item, UpgradeType.DURABILITY);

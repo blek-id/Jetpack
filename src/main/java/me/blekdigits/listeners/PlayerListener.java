@@ -15,7 +15,9 @@ import org.bukkit.scheduler.BukkitTask;
 import me.blekdigits.jetpack.JetpackPlugin;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
 import java.util.UUID;
 
 public class PlayerListener implements Listener {
@@ -27,6 +29,7 @@ public class PlayerListener implements Listener {
     private final Map<UUID, Float> originalFlySpeeds = new HashMap<>();
     private final Map<UUID, Integer> fuelTickProgress = new HashMap<>();
     private final Map<UUID, Integer> durabilityProgress = new HashMap<>();
+    private final Set<UUID> jetpackAllowFlight = new HashSet<>();
 
     public PlayerListener(JetpackPlugin plugin) {
         this.plugin = plugin;
@@ -77,10 +80,12 @@ public class PlayerListener implements Listener {
 
         boolean currentAllowFlight = player.getAllowFlight();
         player.setAllowFlight(!currentAllowFlight);
-        
+
         if (player.getAllowFlight()) {
+            jetpackAllowFlight.add(player.getUniqueId());
             player.sendMessage(plugin.getMessage("flight_enabled"));
         } else {
+            jetpackAllowFlight.remove(player.getUniqueId());
             player.sendMessage(plugin.getMessage("flight_disabled"));
         }
     }
@@ -152,9 +157,15 @@ public class PlayerListener implements Listener {
         if (player.getGameMode() == GameMode.CREATIVE) return;
 
         if (event.isFlying()) {
-            // Only take over the flight event when the player is actually trying to use the jetpack.
-            // Otherwise leave it to whatever plugin granted flight (e.g. /fly from EssentialsX).
-            if (!isWearingJetpack(player)) return;
+            if (!isWearingJetpack(player)) {
+                // If we previously granted flight via the jetpack and the jetpack is now gone,
+                // revoke it. Otherwise leave the event alone (e.g. /fly from another plugin).
+                if (jetpackAllowFlight.contains(player.getUniqueId())) {
+                    event.setCancelled(true);
+                    disableJetpackFlight(player);
+                }
+                return;
+            }
 
             if (!player.hasPermission("jetpack.use")) {
                 event.setCancelled(true);
@@ -165,15 +176,13 @@ public class PlayerListener implements Listener {
 
             if (!hasFuel(player)) {
                 player.sendMessage(plugin.getMessage("out_of_fuel"));
-                player.setAllowFlight(false);
-                player.setFlying(false);
-                clearFuelProgress(player);
-                stopFlightTask(player);
+                disableJetpackFlight(player);
                 return;
             }
 
             player.setAllowFlight(true);
             player.setFlying(true);
+            jetpackAllowFlight.add(player.getUniqueId());
             ItemStack jetpack = player.getInventory().getChestplate();
             applyJetpackFlySpeed(player, jetpack);
             startFlightTask(player);
@@ -197,10 +206,7 @@ public class PlayerListener implements Listener {
             public void run() {
                 if (!player.isFlying() || !isWearingJetpack(player)) {
                     player.sendMessage(plugin.getMessage("jetpack_removed"));
-                    player.setAllowFlight(false);
-                    player.setFlying(false);
-                    clearFuelProgress(player);
-                    stopFlightTask(player);
+                    disableJetpackFlight(player);
                     this.cancel();
                     return;
                 }
@@ -214,10 +220,7 @@ public class PlayerListener implements Listener {
                 if (ticks >= burnTicks) {
                     if (!hasFuel(player)) {
                         player.sendMessage(plugin.getMessage("out_of_fuel"));
-                        player.setAllowFlight(false);
-                        player.setFlying(false);
-                        clearFuelProgress(player);
-                        stopFlightTask(player);
+                        disableJetpackFlight(player);
                         this.cancel();
                         return;
                     }
@@ -251,6 +254,7 @@ public class PlayerListener implements Listener {
 
         stopFlightTask(player);
         clearFuelProgress(player);
+        jetpackAllowFlight.remove(player.getUniqueId());
 
         if (player.getGameMode() != org.bukkit.GameMode.CREATIVE) {
             player.setAllowFlight(false);
@@ -329,10 +333,7 @@ public class PlayerListener implements Listener {
             if (currentDamage >= maxDamage) {
                 player.getInventory().setChestplate(null);
                 player.sendMessage(plugin.getMessage("jetpack_broken"));
-                player.setAllowFlight(false);
-                player.setFlying(false);
-                clearFuelProgress(player);
-                stopFlightTask(player);
+                disableJetpackFlight(player);
             } else {
                 damageable.setDamage(currentDamage + 1);
                 chest.setItemMeta(damageable);
@@ -350,6 +351,7 @@ public class PlayerListener implements Listener {
     private void disableJetpackFlight(Player player) {
         player.setAllowFlight(false);
         player.setFlying(false);
+        jetpackAllowFlight.remove(player.getUniqueId());
         clearFuelProgress(player);
         stopFlightTask(player);
     }
